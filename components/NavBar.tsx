@@ -48,6 +48,9 @@ const NavBar = (status: any) => {
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li onClick={handleLogout}>
+                    <a>Dashboard</a>
+                  </li>
+                  <li onClick={handleLogout}>
                     <a>Logout</a>
                   </li>
                 </ul>
@@ -55,16 +58,17 @@ const NavBar = (status: any) => {
             </>
           ) : (
             <>
-              {router.pathname === "/auth/create-account" && (
-                <button
-                  className="btn btn-ghost"
-                  onClick={() => {
-                    router.push("/auth/login");
-                  }}
-                >
-                  Login
-                </button>
-              )}
+              {router.pathname === "/auth/create-account" ||
+                (router.pathname === "/" && (
+                  <button
+                    className="btn btn-ghost"
+                    onClick={() => {
+                      router.push("/auth/login");
+                    }}
+                  >
+                    Login
+                  </button>
+                ))}
               {router.pathname === "/auth/login" && (
                 <button
                   className="btn btn-ghost"

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import app from "../../appwrite/config";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
 import { login } from "../../types/auth";
 import uniqid from "uniqid";
@@ -23,7 +23,8 @@ const Login: NextPage = () => {
     app.account
       .createSession(user.email, user.password)
       .then((Response) => {
-        toast.success("Suucess.");
+        toast.success("Suucess");
+        route.push("/dashboard");
       })
       .catch((Error) => {
         toast.error(Error.message);

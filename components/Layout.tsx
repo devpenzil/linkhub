@@ -15,7 +15,7 @@ function Layout({ children }: any) {
       });
   }, []);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto min-h-screen">
       <NavBar status={isLogged} />
       {children}
     </div>
