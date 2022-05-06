@@ -1,7 +1,7 @@
 import React from "react";
 
-function StatSection() {
+function BioSection() {
   return <div>StatSection</div>;
 }
 
-export default StatSection;
+export default BioSection;
