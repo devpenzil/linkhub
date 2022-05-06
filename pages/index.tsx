@@ -1,24 +1,16 @@
-import type { NextPage } from 'next'
-import app from '../appwrite/config'
+import type { NextPage } from "next";
+import Head from "next/head";
+import app from "../appwrite/config";
 
 const Home: NextPage = () => {
-  const handleClick = () => {
-    app.account.create('123sss45','ajoalex012aa@gmail.com','Ajo@2001','Ajo Alex').then((Response)=>{
-      console.log(Response);
-      
-    }).catch((Error)=>{
-      console.log(Error);
-      
-    })
-  }
   return (
-    <div >
-     <button onClick={handleClick}>
-       login
-     </button>
-    
-    </div>
-  )
-}
+    <>
+      <Head>
+        <title>Home - LinkHub</title>
+      </Head>
+      <section>dhghjf</section>
+    </>
+  );
+};
 
-export default Home
+export default Home;
