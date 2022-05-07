@@ -47,7 +47,11 @@ const NavBar = (status: any) => {
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
-                  <li onClick={handleLogout}>
+                  <li
+                    onClick={() => {
+                      router.push("/dashboard");
+                    }}
+                  >
                     <a>Dashboard</a>
                   </li>
                   <li onClick={handleLogout}>
