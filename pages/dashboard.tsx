@@ -145,7 +145,9 @@ const Dashboard: NextPage = () => {
                         " tab-active")
                     }
                     onClick={() => {
-                      SetActiveElement(<BioSection />);
+                      SetActiveElement(
+                        <BioSection uid={uid} updated={fetchData} />
+                      );
                     }}
                   >
                     Bio
@@ -160,7 +162,7 @@ const Dashboard: NextPage = () => {
                       SetActiveElement(<SettingsSection />);
                     }}
                   >
-                    Settings
+                    Stat
                   </a>
                 </div>
               </div>
