@@ -45,7 +45,9 @@ const Dashboard: NextPage = () => {
   const copyLink = () => {
     toast.loading("Your link is preparing");
     axios
-      .get(`https://api.shrtco.de/v2/shorten?url=https://iconic.app/eye/${uid}`)
+      .get(
+        `https://api.shrtco.de/v2/shorten?url=https://linkhub-appwrite.netlify.app/${uid}`
+      )
       .then((Response) => {
         toast.dismiss();
         navigator.clipboard.writeText(Response.data.result.full_short_link);
