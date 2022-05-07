@@ -62,17 +62,26 @@ const NavBar = (status: any) => {
             </>
           ) : (
             <>
-              {router.pathname === "/auth/create-account" ||
-                (router.pathname === "/" && (
-                  <button
-                    className="btn btn-ghost"
-                    onClick={() => {
-                      router.push("/auth/login");
-                    }}
-                  >
-                    Login
-                  </button>
-                ))}
+              {router.pathname === "/auth/create-account" && (
+                <button
+                  className="btn btn-ghost"
+                  onClick={() => {
+                    router.push("/auth/login");
+                  }}
+                >
+                  Login
+                </button>
+              )}
+              {router.pathname === "/" && (
+                <button
+                  className="btn btn-ghost"
+                  onClick={() => {
+                    router.push("/auth/login");
+                  }}
+                >
+                  Login
+                </button>
+              )}
               {router.pathname === "/auth/login" && (
                 <button
                   className="btn btn-ghost"

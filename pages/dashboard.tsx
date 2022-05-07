@@ -9,6 +9,10 @@ import SettingsSection from "../components/SettingsSection";
 import ThemeSection from "../components/ThemeSection";
 import { useRouter } from "next/router";
 import BioSection from "../components/BioSection";
+import CopyIcon from "../assets/icons/CopyIcon";
+import { toast } from "react-toastify";
+import Eye from "../assets/icons/Eye";
+import axios from "axios";
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
@@ -50,7 +54,20 @@ const Dashboard: NextPage = () => {
         }
       });
   };
-  console.log(allData);
+  const copyLink = () => {
+    toast.loading("Your link is preparing");
+    axios
+      .get(`https://api.shrtco.de/v2/shorten?url=https://iconic.app/eye/${uid}`)
+      .then((Response) => {
+        toast.dismiss();
+        navigator.clipboard.writeText(Response.data.result.full_short_link);
+        toast.success("Link copies to clipboard");
+      })
+      .catch((Error) => {
+        toast.dismiss();
+        console.log(Error);
+      });
+  };
 
   return (
     <>
@@ -61,7 +78,7 @@ const Dashboard: NextPage = () => {
         <div className="container mx-auto">
           <div className="h-20" />
           <div className="flex justify-around">
-            <div>
+            <div className="flex flex-col items-center">
               <div className="mockup-phone">
                 <div className="camera" />
                 <div className="display">
@@ -71,6 +88,22 @@ const Dashboard: NextPage = () => {
                   >
                     <Preview data={allData && allData} />
                   </div>
+                </div>
+              </div>
+              <div className="mt-3  space-y-3 cursor-pointer">
+                <div
+                  className="flex space-x-2 justify-center"
+                  onClick={copyLink}
+                >
+                  Copy the link <CopyIcon />
+                </div>
+                <div
+                  className="flex space-x-2 justify-center"
+                  onClick={() => {
+                    router.push(`/${uid}`);
+                  }}
+                >
+                  Preview <Eye />
                 </div>
               </div>
             </div>
