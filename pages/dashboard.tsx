@@ -12,9 +12,9 @@ import BioSection from "../components/BioSection";
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
-  const [activeElement, SetActiveElement] = useState(<LinkSection />);
-  const [uid, Setuid] = useState("");
   const [allData, SetData] = useState<any>();
+  const [activeElement, SetActiveElement] = useState(<></>);
+  const [uid, Setuid] = useState("");
   useEffect(() => {
     app.account
       .getSessions()
@@ -30,7 +30,7 @@ const Dashboard: NextPage = () => {
   const fetchData = () => {
     app.database
       .getDocument("627505b352fea363d3c1", uid)
-      .then((Response) => {
+      .then((Response: any) => {
         SetData(Response);
       })
       .catch((Error) => {
@@ -69,7 +69,7 @@ const Dashboard: NextPage = () => {
                     className="artboard artboard-demo phone-1 overflow-y-auto"
                     data-theme={allData?.theme}
                   >
-                    <Preview />
+                    <Preview data={allData && allData} />
                   </div>
                 </div>
               </div>
@@ -84,7 +84,9 @@ const Dashboard: NextPage = () => {
                         " tab-active")
                     }
                     onClick={() => {
-                      SetActiveElement(<LinkSection />);
+                      SetActiveElement(
+                        <LinkSection uid={uid} updated={fetchData} />
+                      );
                     }}
                   >
                     Links
@@ -113,7 +115,7 @@ const Dashboard: NextPage = () => {
                       SetActiveElement(<BioSection />);
                     }}
                   >
-                    Stat
+                    Bio
                   </a>
                   <a
                     className={

@@ -20,7 +20,19 @@ const CreateAccount: NextPage = () => {
     app.account
       .create(uniqid(), user.email, user.password, user.name)
       .then((Response) => {
+        console.log(Response);
+
         toast.success("Suucess.");
+        app.database
+          .createDocument("627505b352fea363d3c1", Response.$id, {
+            theme: "light",
+          })
+          .then((Response) => {
+            console.log(Response);
+          })
+          .catch((Error) => {
+            console.log(Error);
+          });
         route.push("/auth/login");
       })
       .catch((Error) => {

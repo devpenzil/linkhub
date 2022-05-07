@@ -1,19 +1,129 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import app from "../appwrite/config";
+import { links, linksection } from "../types/dashboard";
 import AppButton from "./AppButton";
 import AppInput from "./AppInput";
 
-function LinkSection() {
+function LinkSection({ uid, updated }: linksection) {
+  const [links, SetLinks] = useState<links>({
+    email: "",
+    facebook: "",
+    github: "",
+    instagram: "",
+    linkedin: "",
+    twitter: "",
+    whatsapp: "",
+  });
+  useEffect(() => {
+    app.database
+      .getDocument("627505b352fea363d3c1", uid)
+      .then((Response: any) => {
+        SetLinks({
+          ...links,
+          email: Response.email,
+          facebook: Response.facebook || "",
+          github: Response.github || "",
+          instagram: Response.instagram || "",
+          linkedin: Response.Linkedin || "",
+          twitter: Response.Twitter || "",
+          whatsapp: Response.whatsapp || "",
+        });
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
+  // console.log(links);
+
+  const update = () => {
+    app.database
+      .updateDocument("627505b352fea363d3c1", uid, {
+        email: links.email,
+        facebook: links.facebook,
+        github: links.github,
+        instagram: links.instagram,
+        Linkedin: links.linkedin,
+        Twitter: links.twitter,
+        whatsapp: links.whatsapp,
+      })
+      .then((Response) => {
+        console.log(Response);
+        toast.dismiss();
+        updated();
+      })
+      .catch((Error) => {
+        console.log(Error);
+        toast.dismiss();
+      });
+  };
+
   return (
     <div className="py-4">
       <div>
-        <AppInput label="Email" triggerChange={() => {}} type="url" />
-        <AppInput label="Whatsapp" triggerChange={() => {}} type="url" />
-        <AppInput label="Instagram" triggerChange={() => {}} type="url" />
-        <AppInput label="twitter" triggerChange={() => {}} type="url" />
-        <AppInput label="Github" triggerChange={() => {}} type="url" />
-        <AppInput label="Linkedin" triggerChange={() => {}} type="url" />
-        <AppInput label="Facebook" triggerChange={() => {}} type="url" />
-        <AppButton label="Save" triggerClick={() => {}} />
+        <AppInput
+          label="Email"
+          triggerChange={(e) => {
+            SetLinks({ ...links, email: e });
+          }}
+          type="url"
+          value={links.email}
+        />
+        <AppInput
+          label="Whatsapp"
+          triggerChange={(e) => {
+            SetLinks({ ...links, whatsapp: e });
+          }}
+          type="url"
+          value={links.whatsapp}
+        />
+        <AppInput
+          label="Instagram"
+          triggerChange={(e) => {
+            SetLinks({ ...links, instagram: e });
+          }}
+          type="url"
+          value={links.instagram}
+        />
+        <AppInput
+          label="twitter"
+          triggerChange={(e) => {
+            SetLinks({ ...links, twitter: e });
+          }}
+          type="url"
+          value={links.twitter}
+        />
+        <AppInput
+          label="Github"
+          triggerChange={(e) => {
+            SetLinks({ ...links, github: e });
+          }}
+          type="url"
+          value={links.github}
+        />
+        <AppInput
+          label="Linkedin"
+          triggerChange={(e) => {
+            SetLinks({ ...links, linkedin: e });
+          }}
+          type="url"
+          value={links.linkedin}
+        />
+        <AppInput
+          label="Facebook"
+          triggerChange={(e) => {
+            SetLinks({ ...links, facebook: e });
+          }}
+          type="url"
+          value={links.facebook}
+        />
+        <AppButton
+          label="Update"
+          triggerClick={() => {
+            update();
+          }}
+        />
       </div>
     </div>
   );
