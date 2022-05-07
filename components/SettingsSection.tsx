@@ -11,13 +11,6 @@ function SettingsSection() {
           <div className="stat-desc">All time data</div>
         </div>
       </div>
-      <div className="mt-6 text-2xl font-semibold text-red-600">
-        Delete Your Account
-      </div>
-      <p className="mt-2">
-        Once you delete your account you can't undo that process
-      </p>
-      <button className="btn btn-error mt-4">Delete </button>
     </div>
   );
 }

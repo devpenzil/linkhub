@@ -10,13 +10,13 @@ function Preview({ data }: any) {
   console.log(links);
 
   return (
-    <div className="w-full h-full p-5 flex flex-col items-center mt-4">
-      <div className="avatar ">
+    <div className="w-full h-full p-5 flex flex-col items-center pt-8">
+      <div className="avatar mt-8">
         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
           <img src="https://api.lorem.space/image/face?hash=3174" />
         </div>
       </div>
-      <div className="text-2xl font-bold mt-2">Ajo Alex</div>
+      <div className="text-2xl font-bold mt-2">John Doe</div>
       <div className="text-justify text-sm font-light mt-2">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. In harum ad
         suscipit veniam ex ass facere sequi rem expedita at.

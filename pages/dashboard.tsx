@@ -13,11 +13,12 @@ import CopyIcon from "../assets/icons/CopyIcon";
 import { toast } from "react-toastify";
 import Eye from "../assets/icons/Eye";
 import axios from "axios";
+import DashboardIntro from "../components/DashboardIntro";
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
   const [allData, SetData] = useState<any>();
-  const [activeElement, SetActiveElement] = useState(<></>);
+  const [activeElement, SetActiveElement] = useState(<DashboardIntro />);
   const [uid, Setuid] = useState("");
   useEffect(() => {
     app.account
@@ -79,11 +80,12 @@ const Dashboard: NextPage = () => {
           <div className="h-20" />
           <div className="flex justify-around">
             <div className="flex flex-col items-center">
+              This is just a preview
               <div className="mockup-phone">
                 <div className="camera" />
                 <div className="display">
                   <div
-                    className="artboard artboard-demo phone-1 overflow-y-auto"
+                    className="artboard artboard-demo phone-1 overflow-y-auto no-scroll-bar"
                     data-theme={allData?.theme}
                   >
                     <Preview data={allData && allData} />

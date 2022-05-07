@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import app from "../appwrite/config";
 import { bio, themes } from "../types/dashboard";
@@ -12,6 +13,16 @@ function BioSection({ uid, updated }: themes) {
     name: "",
     bio: "",
   });
+  useEffect(() => {
+    app.database
+      .getDocument("627505b352fea363d3c1", uid)
+      .then((Response: any) => {
+        Setbiodata({ ...biodata, name: Response.Name, bio: Response.Bio });
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
   const uploadImg = (file: any) => {
     toast.loading("uploading image");
     app.storage
@@ -38,9 +49,11 @@ function BioSection({ uid, updated }: themes) {
       })
       .then((Response) => {
         console.log(Response);
+        toast.success("Updated");
       })
       .catch((Error) => {
         console.log(Error);
+        toast.error("Try again");
       });
   };
   return (

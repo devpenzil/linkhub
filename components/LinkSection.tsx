@@ -51,11 +51,13 @@ function LinkSection({ uid, updated }: linksection) {
       .then((Response) => {
         console.log(Response);
         toast.dismiss();
+        toast.success("updated");
         updated();
       })
       .catch((Error) => {
         console.log(Error);
         toast.dismiss();
+        toast.error("Try again");
       });
   };
 
