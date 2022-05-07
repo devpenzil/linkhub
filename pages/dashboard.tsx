@@ -34,25 +34,12 @@ const Dashboard: NextPage = () => {
   }, []);
   const fetchData = () => {
     app.database
-      .getDocument("627505b352fea363d3c1", uid)
+      .getDocument("6276953fd351b96aec7a", uid)
       .then((Response: any) => {
         SetData(Response);
       })
       .catch((Error) => {
         console.log(Error);
-
-        if (Error.code === 404) {
-          app.database
-            .createDocument("627505b352fea363d3c1", uid, {
-              theme: "light",
-            })
-            .then((Response) => {
-              console.log(Response);
-            })
-            .catch((Error) => {
-              console.log(Error);
-            });
-        }
       });
   };
   const copyLink = () => {

@@ -24,7 +24,7 @@ function ThemeSection({ uid, updated }: themes) {
   const setTheme = (theme: string) => {
     toast.loading("Loading");
     app.database
-      .updateDocument("627505b352fea363d3c1", uid, {
+      .updateDocument("6276953fd351b96aec7a", uid, {
         theme: theme,
       })
       .then((Response) => {

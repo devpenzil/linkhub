@@ -21,25 +21,36 @@ const CreateAccount: NextPage = () => {
       .create(uniqid(), user.email, user.password, user.name)
       .then((Response) => {
         console.log(Response);
-
+        console.log(Response.$id);
+        createDoc();
         toast.success("Suucess.");
-        app.database
-          .createDocument("627505b352fea363d3c1", Response.$id, {
-            theme: "light",
-          })
-          .then((Response) => {
-            console.log(Response);
-          })
-          .catch((Error) => {
-            console.log(Error);
-          });
-        route.push("/auth/login");
+
+        // route.push("/auth/login");
       })
       .catch((Error) => {
         toast.error(Error.message);
       });
   };
-
+  const createDoc = () => {
+    app.account
+      .createSession(user.email, user.password)
+      .then((Response) => {
+        app.database
+          .createDocument("6276953fd351b96aec7a", Response.userId, {
+            theme: "light",
+          })
+          .then((Response) => {
+            console.log(Response);
+            route.push("/dashboard");
+          })
+          .catch((Error) => {
+            console.log(Error);
+          });
+      })
+      .catch((Response) => {
+        console.log(Error);
+      });
+  };
   return (
     <>
       <Head>

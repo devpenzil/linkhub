@@ -15,7 +15,7 @@ function BioSection({ uid, updated }: themes) {
   });
   useEffect(() => {
     app.database
-      .getDocument("627505b352fea363d3c1", uid)
+      .getDocument("6276953fd351b96aec7a", uid)
       .then((Response: any) => {
         Setbiodata({ ...biodata, name: Response.Name, bio: Response.Bio });
       })
@@ -26,7 +26,7 @@ function BioSection({ uid, updated }: themes) {
   const uploadImg = (file: any) => {
     toast.loading("uploading image");
     app.storage
-      .createFile("627505fe2735f876ce27", uid, file)
+      .createFile("627696a5e7e91263e6b3", uid, file)
       .then((Response) => {
         toast.dismiss();
         console.log(Response);
@@ -43,7 +43,7 @@ function BioSection({ uid, updated }: themes) {
   };
   const updateData = () => {
     app.database
-      .updateDocument("627505b352fea363d3c1", uid, {
+      .updateDocument("6276953fd351b96aec7a", uid, {
         Name: biodata.name,
         Bio: biodata.bio,
       })

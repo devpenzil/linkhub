@@ -1,6 +1,8 @@
 import { Appwrite } from "appwrite";
 const app = new Appwrite();
 
-app.setEndpoint("http://localhost/v1").setProject("6275054d1e8acf76ad35");
+app
+  .setEndpoint("http://ec2-65-1-110-75.ap-south-1.compute.amazonaws.com/v1")
+  .setProject("6276945952266f6d7951");
 
 export default app;
