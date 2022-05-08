@@ -1,6 +1,28 @@
 # LinkHub
 
-### Start with Appwrite
+![](./assets/ss.png)
+
+### Project Setup
+
+Download the repo
+
+```bash
+git clone https://github.com/devpenzil/linkhub.git
+```
+
+Install the packages
+
+```bash
+npm install
+```
+
+Run the server
+
+```bash
+npm run dev
+```
+
+### Setup with Appwrite
 
 - Create an appwrite project
 - Create a database collection with below structure
