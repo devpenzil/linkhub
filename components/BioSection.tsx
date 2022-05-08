@@ -15,7 +15,7 @@ function BioSection({ uid, updated }: themes) {
   });
   useEffect(() => {
     app.database
-      .getDocument("6276953fd351b96aec7a", uid)
+      .getDocument(process.env.COLLECTIONID || "", uid)
       .then((Response: any) => {
         Setbiodata({ ...biodata, name: Response.Name, bio: Response.Bio });
       })
@@ -43,7 +43,7 @@ function BioSection({ uid, updated }: themes) {
   };
   const updateData = () => {
     app.database
-      .updateDocument("6276953fd351b96aec7a", uid, {
+      .updateDocument(process.env.COLLECTIONID || "", uid, {
         Name: biodata.name,
         Bio: biodata.bio,
       })

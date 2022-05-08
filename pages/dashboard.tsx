@@ -34,7 +34,7 @@ const Dashboard: NextPage = () => {
   }, []);
   const fetchData = () => {
     app.database
-      .getDocument("6276953fd351b96aec7a", uid)
+      .getDocument(process.env.COLLECTIONID || "", uid)
       .then((Response: any) => {
         SetData(Response);
       })

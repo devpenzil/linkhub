@@ -36,7 +36,7 @@ const CreateAccount: NextPage = () => {
       .createSession(user.email, user.password)
       .then((Response) => {
         app.database
-          .createDocument("6276953fd351b96aec7a", Response.userId, {
+          .createDocument(process.env.COLLECTIONID || "", Response.userId, {
             theme: "light",
           })
           .then((Response) => {

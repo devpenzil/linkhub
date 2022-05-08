@@ -18,7 +18,7 @@ function LinkSection({ uid, updated }: linksection) {
   });
   useEffect(() => {
     app.database
-      .getDocument("6276953fd351b96aec7a", uid)
+      .getDocument(process.env.COLLECTIONID || "", uid)
       .then((Response: any) => {
         SetLinks({
           ...links,
@@ -39,7 +39,7 @@ function LinkSection({ uid, updated }: linksection) {
 
   const update = () => {
     app.database
-      .updateDocument("6276953fd351b96aec7a", uid, {
+      .updateDocument(process.env.COLLECTIONID || "", uid, {
         email: links.email,
         facebook: links.facebook,
         github: links.github,

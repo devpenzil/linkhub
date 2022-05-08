@@ -12,12 +12,12 @@ function UserName() {
     const { username }: any = route.query;
     username &&
       app.database
-        .getDocument("6276953fd351b96aec7a", username)
+        .getDocument(process.env.COLLECTIONID || "", username)
         .then((Response) => {
           SetAlldata(Response);
           alldata &&
             app.database
-              .updateDocument("6276953fd351b96aec7a", username, {
+              .updateDocument(process.env.COLLECTIONID || "", username, {
                 views: alldata.views + 1,
               })
               .then((Response) => {
